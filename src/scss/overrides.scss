@@ -1,7 +1,7 @@
 @import "variables";
 
 .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background-color: $color-primary-container;
+  background-color: $color-secondary-surface;
 }
 
 .ant-input-affix-wrapper {
@@ -13,7 +13,7 @@
 }
 
 .ant-table-cell {
-  background-color: $color-primary-container;
+  background-color: $color-secondary-surface;
 }
 
 .ant-btn-link {

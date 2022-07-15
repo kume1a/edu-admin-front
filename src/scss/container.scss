@@ -1,15 +1,11 @@
 @import "variables";
 
-.bg-secondary-container {
-  background-color: $color-primary-container;
+.bg-secondary-sufrace {
+  background-color: $color-secondary-surface;
 }
 
-.bg-primary {
-  background-color: $color-primary;
-}
-
-.color-primary {
-  color: $color-primary;
+.bg-secondary {
+  background-color: $color-secondary;
 }
 
 .color-error {
