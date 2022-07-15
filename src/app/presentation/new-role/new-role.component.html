@@ -1,0 +1,49 @@
+<nz-breadcrumb class="pb-16">
+  <nz-breadcrumb-item>მთავარი</nz-breadcrumb-item>
+  <nz-breadcrumb-item>როლები</nz-breadcrumb-item>
+  <nz-breadcrumb-item>ახალი როლი</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div nz-row nzJustify="end">
+  <button
+    nz-button nzType="primary"
+    class="btn-bg-secondary"
+    (click)="onSavePressed()">
+    შენახვა
+  </button>
+</div>
+
+<div nz-row nzGutter="64">
+  <div nz-col nzSpan="14">
+    <p class="mb-24 fs-6 fw-500">მთავარი ინფორმაცია</p>
+    <form [formGroup]="form" class="w-100">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="მითითება სავალდებულოა">
+          <input nz-input placeholder="სახელი" formControlName="name"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="მითითება სავალდებულოა">
+          <nz-select nzMode="tags"
+                     nzPlaceHolder="უფლებები"
+                     formControlName="permissions">
+            <nz-option *ngFor="let permission of permissions$ | async"
+                       [nzLabel]="permission.permission"
+                       [nzValue]="permission.permission"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="მითითება სავალდებულოა">
+           <textarea
+             nz-input
+             placeholder="აღწერა"
+             type="text"
+             [nzAutosize]="{ minRows: 4, maxRows: 6 }"
+             formControlName="description"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
+

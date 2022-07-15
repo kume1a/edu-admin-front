@@ -1,0 +1,57 @@
+<nz-layout>
+  <nz-sider nzWidth="200px" class="slider">
+    <div class="header">
+<!--      <img src="../../../../../assets/icons/logo.svg"-->
+<!--           width="42"-->
+<!--           height="42"-->
+<!--           class="pb-5"-->
+<!--           alt="">-->
+      <div class="align-self-center pl-10 fw-500">APP_NAME</div>
+    </div>
+    <ul nz-menu nzMode="inline">
+      <li class="nav-section-header">აპლიკაცია</li>
+      <li nz-menu-item routerLink="dashboard"
+          [nzSelected]="currentPath == 'dashboard'">
+        <img src="../../../../../assets/icons/dashboard.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>მთავარი</span>
+      </li>
+      <li nz-menu-item routerLink="roles"
+          [nzSelected]="currentPath == 'roles'">
+        <img src="../../../../../assets/icons/shield.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>როლები</span>
+      </li>
+      <li class="nav-section-header">კავშირი</li>
+      <li nz-menu-item routerLink="feedback"
+          [nzSelected]="currentPath == 'feedback'">
+        <img src="../../../../../assets/icons/feedback.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>უკუკავშირი</span>
+      </li>
+      <li nz-menu-item routerLink="contact-requests"
+          [nzSelected]="currentPath == 'contact-requests'">
+        <img src="../../../../../assets/icons/message.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>კონტაქტი</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-content class="inner-content">
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

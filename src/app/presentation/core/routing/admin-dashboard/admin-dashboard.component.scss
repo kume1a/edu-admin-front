@@ -1,0 +1,54 @@
+@import "../../../../../scss/variables";
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: $color-secondary-container;
+}
+
+.ant-layout {
+  background-color: white;
+}
+
+.ant-layout-sider {
+  background-color: $color-primary-container;
+}
+
+.ant-menu {
+  background-color: transparent;
+}
+
+.ant-menu-item-selected {
+  color: white;
+}
+
+.ant-menu-item:hover {
+  color: $color-secondary-light;
+}
+
+.header {
+  height: 36px;
+  margin: 16px 16px 0 16px;
+  display: flex;
+}
+
+.slider {
+  height: 100vh;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.nav-section-header {
+  margin: 32px 0 12px 24px;
+  font-size: .8rem;
+  font-weight: 500;
+  color: $color-secondary-element;
+}
+
+.inner-content {
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 52px 32px 0 32px;
+  background-color: $color-primary;
+}

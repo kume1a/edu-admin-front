@@ -1,0 +1,21 @@
+@import "variables";
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: $color-primary-container;
+}
+
+.ant-input-affix-wrapper {
+  border-color: $color-secondary-element;
+}
+
+.btn-bg-secondary {
+  color: white;
+}
+
+.ant-table-cell {
+  background-color: $color-primary-container;
+}
+
+.ant-btn-link {
+  color: white;
+}

@@ -1,0 +1,13 @@
+@for $i from 0 through 20 {
+  .fs-#{$i} {
+    font-size: .2rem * $i;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
