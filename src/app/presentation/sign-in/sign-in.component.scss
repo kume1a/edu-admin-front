@@ -1,15 +1,13 @@
-@import "../../../scss/variables";
-
 .container {
   display: flex;
 
   .sign-in-content {
     padding: 0 2.5rem;
 
-    h1 {
+    h2 {
       margin: 0;
-      font-size: 3rem;
-      font-weight: 600;
+      font-size: 2rem;
+      font-weight: 500;
       line-height: 3.5rem;
     }
 
