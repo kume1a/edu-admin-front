@@ -1,13 +1,14 @@
 @import "variables";
 
-.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background-color: $color-secondary-surface;
-}
-
 .ant-input-affix-wrapper {
   border-color: $color-secondary-element;
 }
 
-.ant-table-cell {
-  background-color: $color-secondary-surface;
+.ant-table-cell,
+.ant-input,
+.ant-select-selector,
+.ant-input-affix-wrapper,
+ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: $color-secondary-surface !important;
 }
+

@@ -1,11 +1,7 @@
 @import "../../../../../scss/variables";
 
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: $color-secondary-surface;
-}
-
-.ant-layout-sider {
-  background-color: $color-secondary-surface;
+  background-color: white;
 }
 
 .ant-menu {
@@ -19,6 +15,7 @@
 }
 
 .slider {
+  background-color: $color-secondary-surface;
   height: 100vh;
   overflow-y: scroll;
 
@@ -38,4 +35,5 @@
   height: 100vh;
   overflow-y: scroll;
   padding: 52px 32px 0 32px;
+  background-color: white;
 }
