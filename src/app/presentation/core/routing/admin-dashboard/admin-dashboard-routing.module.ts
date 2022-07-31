@@ -14,6 +14,7 @@ import { InfoUrlsComponent } from '../../../info-urls/info-urls.component';
 import { InfoParagraphsComponent } from '../../../info-paragraphs/info-paragraphs.component';
 import { ChaptersComponent } from '../../../chapters/chapters.component';
 import { DocumentParagraphsComponent } from '../../../document-paragraphs/document-paragraphs.component';
+import { NewDocumentParagraphComponent } from '../../../new-document-paragraph/new-document-paragraph.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'documents/:documentId/paragraphs',
         component: DocumentParagraphsComponent,
+      },
+      {
+        path: 'documents/:documentId/paragraphs/new',
+        component: NewDocumentParagraphComponent,
       },
     ],
   },

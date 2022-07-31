@@ -17,12 +17,12 @@
       <nz-form-item>
         <nz-form-control [nzErrorTip]="emailErrorTemplate">
           <nz-input-group nzPrefixIcon="mail">
-            <input type="text" nz-input placeholder="Email" formControlName="email"/>
+            <input type="text" nz-input placeholder="მეილი" formControlName="email"/>
           </nz-input-group>
           <ng-template #emailErrorTemplate let-control>
-            <ng-container *ngIf="control.hasError('required')">Field is required</ng-container>
-            <ng-container *ngIf="control.hasError('email')">Invalid email</ng-container>
-            <ng-container *ngIf="control.hasError('maxlength')">Password is too long</ng-container>
+            <ng-container *ngIf="control.hasError('required')">მითითება სავალდებულოა</ng-container>
+            <ng-container *ngIf="control.hasError('email')">მეილის ფორმატი არასწორია</ng-container>
+            <ng-container *ngIf="control.hasError('maxlength')">მეილი გრძელია</ng-container>
           </ng-template>
         </nz-form-control>
       </nz-form-item>
@@ -34,12 +34,12 @@
               [type]="passwordVisible ? 'text' : 'password'"
               nz-input
               formControlName="password"
-              placeholder="Password"/>
+              placeholder="პაროლი"/>
           </nz-input-group>
           <ng-template #passwordErrorTemplate let-control>
-            <ng-container *ngIf="control.hasError('required')">Field is required</ng-container>
-            <ng-container *ngIf="control.hasError('minlength')">Password is too short</ng-container>
-            <ng-container *ngIf="control.hasError('maxlength')">Password is too long</ng-container>
+            <ng-container *ngIf="control.hasError('required')">მითითება სავალდებულოა</ng-container>
+            <ng-container *ngIf="control.hasError('minlength')">პაროლი მოკლეა</ng-container>
+            <ng-container *ngIf="control.hasError('maxlength')">პაროლი გრძელია</ng-container>
           </ng-template>
         </nz-form-control>
         <ng-template #passwordSuffix>
@@ -54,7 +54,7 @@
       <nz-form-item class="mt-32">
         <nz-form-control>
           <button nz-button nzType="primary" class="w-100" type="submit">
-            Sign in
+            შესვლა
           </button>
         </nz-form-control>
       </nz-form-item>

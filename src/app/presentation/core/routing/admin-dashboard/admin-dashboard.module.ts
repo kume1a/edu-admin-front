@@ -42,6 +42,10 @@ import { InfoParagraphsComponent } from '../../../info-paragraphs/info-paragraph
 import { DocumentsState } from '../../../documents/state/documents.state';
 import { DocumentParagraphsState } from '../../../document-paragraphs/state/document-paragraphs.state';
 import { DocumentParagraphsComponent } from '../../../document-paragraphs/document-paragraphs.component';
+import { NewDocumentParagraphComponent } from '../../../new-document-paragraph/new-document-paragraph.component';
+import { NewDocumentParagraphState } from '../../../new-document-paragraph/state/new-document-paragraph.state';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { DocumentParagraphContentComponent } from '../../../document-paragraphs/document-paragraph-content/document-paragraph-content.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +63,8 @@ import { DocumentParagraphsComponent } from '../../../document-paragraphs/docume
     InfoUrlsComponent,
     InfoParagraphsComponent,
     DocumentParagraphsComponent,
+    NewDocumentParagraphComponent,
+    DocumentParagraphContentComponent,
   ],
   imports: [
     NgxsModule.forFeature([
@@ -67,6 +73,7 @@ import { DocumentParagraphsComponent } from '../../../document-paragraphs/docume
       DashboardState,
       DocumentsState,
       DocumentParagraphsState,
+      NewDocumentParagraphState,
     ]),
     AdminDashboardRoutingModule,
     NzLayoutModule,
@@ -91,6 +98,7 @@ import { DocumentParagraphsComponent } from '../../../document-paragraphs/docume
     NzImageModule,
     NzPopoverModule,
     NgxEchartsModule,
+    NzModalModule,
   ],
 })
 export class AdminDashboardModule {}

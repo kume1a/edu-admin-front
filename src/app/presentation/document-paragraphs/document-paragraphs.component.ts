@@ -8,6 +8,8 @@ import { DocumentParagraph } from '../../data/model/document/document-paragraph.
 import { ActionDocumentParagraphs } from './state/document-paragraphs.actions';
 import { ActivatedRoute } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { DocumentParagraphContentComponent } from './document-paragraph-content/document-paragraph-content.component';
 
 @Component({
   selector: 'app-document-paragraphs',
@@ -19,6 +21,7 @@ export class DocumentParagraphsComponent implements OnInit {
     private readonly store: Store,
     private readonly fb: FormBuilder,
     private readonly activatedRoute: ActivatedRoute,
+    private readonly modalService: NzModalService,
   ) {}
 
   @Select(DocumentParagraphsState.documentParagraphs)
@@ -61,15 +64,26 @@ export class DocumentParagraphsComponent implements OnInit {
   }
 
   onShowDocumentParagraphPressed(documentParagraph: DocumentParagraph) {
-    // this.store.dispatch(new Navigate(['/roles/new'], { roleId: role.id }));
+    this.modalService.create({
+      nzWidth: '60%',
+      nzContent: DocumentParagraphContentComponent,
+      nzComponentParams: { documentParagraph },
+      nzFooter: null,
+    });
   }
 
   onUpdateDocumentParagraphPressed(documentParagraph: DocumentParagraph) {
-    // this.store.dispatch(new Navigate(['/roles/new'], { roleId: role.id }));
+    this.store.dispatch(
+      new Navigate([`/documents/${this.documentId}/paragraphs/new`], {
+        documentParagraphId: documentParagraph.id,
+      }),
+    );
   }
 
   onDeleteDocumentParagraphPressed(documentParagraph: DocumentParagraph) {
-    // this.store.dispatch(new Navigate(['/roles/new'], { roleId: role.id }));
+    this.store.dispatch(
+      ActionDocumentParagraphs.deleteDocumentParagraph({ documentParagraph }),
+    );
   }
 
   onNewDocumentParagraphPressed() {

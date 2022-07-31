@@ -1,3 +1,5 @@
+import { DocumentParagraph } from '../../../data/model/document/document-paragraph.interface';
+
 export class ActionDocumentParagraphs {
   static init(payload: { documentId: number }) {
     return new DocumentParagraphsInit(payload);
@@ -13,6 +15,12 @@ export class ActionDocumentParagraphs {
 
   static searchQueryChanged(payload: { searchQuery: string }) {
     return new DocumentParagraphsSearchQueryChanged(payload);
+  }
+
+  static deleteDocumentParagraph(payload: {
+    documentParagraph: DocumentParagraph;
+  }) {
+    return new DocumentParagraphsDeleteDocumentParagraph(payload);
   }
 }
 
@@ -38,4 +46,12 @@ export class DocumentParagraphsSearchQueryChanged {
   static readonly type = '[document-paragraphs] search query changed';
 
   constructor(public readonly payload: { searchQuery: string }) {}
+}
+
+export class DocumentParagraphsDeleteDocumentParagraph {
+  static readonly type = '[document-paragraphs] delete document paragraph';
+
+  constructor(
+    public readonly payload: { documentParagraph: DocumentParagraph },
+  ) {}
 }

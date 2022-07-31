@@ -1,12 +1,14 @@
 import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import {
+  DeleteDocumentParagraphFailure,
   DocumentService,
   GetDocumentFailure,
 } from '../../../data/services/document.service';
 import { DataPage } from '../../../data/model/common/data-page.interface';
 import { DocumentParagraph } from '../../../data/model/document/document-paragraph.interface';
 import {
+  DocumentParagraphsDeleteDocumentParagraph,
   DocumentParagraphsInit,
   DocumentParagraphsPageChanged,
   DocumentParagraphsPageSizeChanged,
@@ -70,13 +72,12 @@ export class DocumentParagraphsState {
 
     const state = ctx.getState();
 
-    this.documentService
-      .getDocumentParagraphs(this.documentId, {
-        page: this.currentPage,
-        pageSize: state.pageSize,
-        searchQuery: state.searchQuery,
-      })
-      .subscribe((res) => ctx?.patchState({ documentParagraphs: res }));
+    await this.getDocumentParagraphs(
+      this.currentPage,
+      state.pageSize,
+      state.searchQuery,
+      ctx,
+    );
 
     this.documentService.getDocument(action.payload.documentId).subscribe({
       next: (res) => ctx?.patchState({ document: res }),
@@ -105,18 +106,12 @@ export class DocumentParagraphsState {
 
     const state = ctx.getState();
 
-    this.documentService
-      .getDocumentParagraphs(this.documentId, {
-        page: this.currentPage,
-        pageSize: action.payload.pageSize,
-        searchQuery: state.searchQuery,
-      })
-      .subscribe((res) =>
-        ctx?.patchState({
-          documentParagraphs: res,
-          pageSize: action.payload.pageSize,
-        }),
-      );
+    await this.getDocumentParagraphs(
+      this.currentPage,
+      action.payload.pageSize,
+      state.searchQuery,
+      ctx,
+    );
   }
 
   @Action(DocumentParagraphsPageChanged)
@@ -126,16 +121,12 @@ export class DocumentParagraphsState {
   ) {
     const state = ctx.getState();
 
-    this.documentService
-      .getDocumentParagraphs(this.documentId, {
-        page: action.payload.page,
-        pageSize: state.pageSize,
-        searchQuery: state.searchQuery,
-      })
-      .subscribe((res) => {
-        this.currentPage = action.payload.page;
-        ctx?.patchState({ documentParagraphs: res });
-      });
+    await this.getDocumentParagraphs(
+      action.payload.page,
+      state.pageSize,
+      state.searchQuery,
+      ctx,
+    );
   }
 
   @Action(DocumentParagraphsSearchQueryChanged)
@@ -146,17 +137,64 @@ export class DocumentParagraphsState {
     this.currentPage = 1;
     const state = ctx.getState();
 
+    await this.getDocumentParagraphs(
+      this.currentPage,
+      state.pageSize,
+      action.payload.searchQuery,
+      ctx,
+    );
+  }
+
+  @Action(DocumentParagraphsDeleteDocumentParagraph)
+  async deleteDocumentParagraph(
+    ctx: StateContext<DocumentParagraphsStateModel>,
+    action: DocumentParagraphsDeleteDocumentParagraph,
+  ) {
+    this.documentService
+      .deleteDocumentParagraph(action.payload.documentParagraph.id)
+      .subscribe({
+        next: () => {
+          const state = ctx.getState();
+
+          this.getDocumentParagraphs(
+            this.currentPage,
+            state.pageSize,
+            state.searchQuery,
+            ctx,
+          );
+        },
+        error: (err: DeleteDocumentParagraphFailure) => {
+          switch (err) {
+            case 'DocumentParagraphNotFound':
+              this.notificationService.error(
+                'Error',
+                'Document paragraph not found',
+              );
+              break;
+            default:
+              this.notificationService.error('Error', 'Unknown error occurred');
+              break;
+          }
+        },
+      });
+  }
+
+  private async getDocumentParagraphs(
+    page: number,
+    pageSize: number,
+    searchQuery: string,
+    ctx: StateContext<DocumentParagraphsStateModel>,
+  ): Promise<void> {
     this.documentService
       .getDocumentParagraphs(this.documentId, {
-        page: this.currentPage,
-        pageSize: state.pageSize,
-        searchQuery: action.payload.searchQuery,
+        page,
+        pageSize,
+        searchQuery,
       })
-      .subscribe((res) =>
-        ctx?.patchState({
-          documentParagraphs: res,
-          searchQuery: action.payload.searchQuery,
-        }),
-      );
+      .subscribe((res) => {
+        this.currentPage = page;
+
+        ctx?.patchState({ documentParagraphs: res, searchQuery, pageSize });
+      });
   }
 }

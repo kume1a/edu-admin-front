@@ -1,0 +1,17 @@
+<div class="flex justify-between mv-12">
+  <div class="flex-column">
+    <p class="fs-7 semi-bold m-0">{{documentParagraph.title}}</p>
+    <p class="fs-4 element-secondary">ინდექსი {{documentParagraph.index}}</p>
+  </div>
+  <div class="flex-column justify-end">
+    <p class="fs-4 element-secondary mb-4">
+      შეიქმნა {{documentParagraph.createdAt | date: "dd/MM/yyyy hh:mm"}}
+    </p>
+    <p class="fs-4 element-secondary">
+      ბოლოს განახლდა {{documentParagraph.updatedAt | date: "dd/MM/yyyy hh:mm"}}
+    </p>
+  </div>
+</div>
+
+<p>{{documentParagraph.content}}</p>
+

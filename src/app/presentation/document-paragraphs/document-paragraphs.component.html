@@ -49,13 +49,34 @@
     <td class="mb-2">{{documentParagraph.title}}</td>
     <td>{{documentParagraph.createdAt | date: "dd/MM/yyyy hh:mm"}}</td>
     <td>
-      <button nz-button
-              nzSize="small"
-              nzType="primary"
-              nzShape="circle"
-              (click)="onUpdateDocumentParagraphPressed(documentParagraph)">
-        <i nz-icon nzType="edit"></i>
-      </button>
+      <section class="flex">
+        <button
+          nz-button
+          class="mr-4"
+          nzSize="small"
+          nzType="primary"
+          nzShape="circle"
+          (click)="onShowDocumentParagraphPressed(documentParagraph)">
+          <i nz-icon nzType="eye"></i>
+        </button>
+        <button
+          nz-button
+          class="mr-4"
+          nzSize="small"
+          nzType="primary"
+          nzShape="circle"
+          (click)="onUpdateDocumentParagraphPressed(documentParagraph)">
+          <i nz-icon nzType="edit"></i>
+        </button>
+        <button
+          nz-button
+          nzSize="small"
+          nzType="primary"
+          nzShape="circle"
+          (click)="onDeleteDocumentParagraphPressed(documentParagraph)">
+          <i nz-icon nzType="delete"></i>
+        </button>
+      </section>
     </td>
   </tr>
   </tbody>

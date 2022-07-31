@@ -1,0 +1,49 @@
+<nz-breadcrumb class="pb-16">
+  <nz-breadcrumb-item>მთავარი</nz-breadcrumb-item>
+  <nz-breadcrumb-item>დოკუმენტები</nz-breadcrumb-item>
+  <nz-breadcrumb-item>{{(document$ | async)?.title ?? ''}}</nz-breadcrumb-item>
+  <nz-breadcrumb-item>ახალი პარაგრაფი</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div nz-row nzJustify="end">
+  <button
+    nz-button nzType="primary"
+    class="btn-bg-secondary"
+    (click)="onSavePressed()">
+    შენახვა
+  </button>
+</div>
+
+<div nz-row nzGutter="64">
+  <div nz-col nzSpan="14">
+    <form [formGroup]="form" class="w-100">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="მითითება სავალდებულოა">
+          <input nz-input placeholder="სათაური" formControlName="title" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="indexErrorTemplate">
+          <input type="text" nz-input placeholder="იდექსი" formControlName="index" />
+          <ng-template #indexErrorTemplate let-control>
+            <ng-container *ngIf="control.hasError('required')">მითითება სავალდებულოა</ng-container>
+            <ng-container *ngIf="control.hasError('pattern')">ინდექსი უნდა იყოს რიცხვი</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control nzErrorTip="მითითება სავალდებულოა">
+           <textarea
+             nz-input
+             placeholder="ტექსტი"
+             type="text"
+             [nzAutosize]="{ minRows: 4, maxRows: 6 }"
+             formControlName="content"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
+
