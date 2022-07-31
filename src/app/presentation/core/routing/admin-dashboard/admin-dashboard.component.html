@@ -1,12 +1,12 @@
 <nz-layout>
-  <nz-sider nzWidth="200px" class="slider">
+  <nz-sider nzWidth="225px" class="slider">
     <div class="header">
       <!--      <img src="../../../../../assets/icons/logo.svg"-->
       <!--           width="42"-->
       <!--           height="42"-->
       <!--           class="pb-5"-->
       <!--           alt="">-->
-      <div class="align-self-center pl-10 fw-500">Literature XII</div>
+      <div class="align-self-center pl-10 fw-500 fs-7">Literature XII</div>
     </div>
     <ul nz-menu nzMode="inline">
       <li class="nav-section-header">აპლიკაცია</li>
@@ -28,6 +28,79 @@
              class="pr-10">
         <span>როლები</span>
       </li>
+      <li nz-menu-item routerLink="documents"
+          [nzSelected]="currentPath == 'documents'">
+        <img src="../../../../../assets/icons/scale.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>დოკუმენტები</span>
+      </li>
+      <li class="nav-section-header">ლიტერატურა</li>
+      <li nz-menu-item routerLink="genres"
+          [nzSelected]="currentPath == 'genres'">
+        <img src="../../../../../assets/icons/category.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>ჟანრები</span>
+      </li>
+      <li nz-menu-item routerLink="creations"
+          [nzSelected]="currentPath == 'creations'">
+        <img src="../../../../../assets/icons/book.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>ნაწარმოებები</span>
+      </li>
+      <li nz-menu-item routerLink="episodes"
+          [nzSelected]="currentPath == 'episodes'">
+        <img src="../../../../../assets/icons/category2.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>ეპიზოდები</span>
+      </li>
+      <li nz-menu-item routerLink="chapters"
+          [nzSelected]="currentPath == 'chapters'">
+        <img src="../../../../../assets/icons/file-text.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>თავები</span>
+      </li>
+      <li nz-menu-item routerLink="authors"
+          [nzSelected]="currentPath == 'authors'">
+        <img src="../../../../../assets/icons/user.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>ავტორები</span>
+      </li>
+      <li nz-menu-item routerLink="info-urls"
+          [nzSelected]="currentPath == 'info-urls'">
+        <img src="../../../../../assets/icons/link.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>ინფორმაციის ლინკები</span>
+      </li>
+      <li nz-menu-item routerLink="info-paragraphs"
+          [nzSelected]="currentPath == 'info-paragraphs'">
+        <img src="../../../../../assets/icons/info.svg"
+             width="24"
+             height="24"
+             alt=""
+             class="pr-10">
+        <span>დამატებითი ინფო</span>
+      </li>
       <li class="nav-section-header">კავშირი</li>
       <li nz-menu-item routerLink="feedback"
           [nzSelected]="currentPath == 'feedback'">
@@ -37,15 +110,6 @@
              alt=""
              class="pr-10">
         <span>უკუკავშირი</span>
-      </li>
-      <li nz-menu-item routerLink="contact-requests"
-          [nzSelected]="currentPath == 'contact-requests'">
-        <img src="../../../../../assets/icons/message.svg"
-             width="24"
-             height="24"
-             alt=""
-             class="pr-10">
-        <span>კონტაქტი</span>
       </li>
     </ul>
   </nz-sider>

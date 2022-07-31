@@ -31,7 +31,14 @@ import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { DashboardState } from '../../../dashboard/state/dashboard.state';
-import { ContactRequestsComponent } from '../../../contact-requests/contact-requests.component';
+import { DocumentsComponent } from '../../../documents/documents.component';
+import { GenresComponent } from '../../../genres/genres.component';
+import { CreationsComponent } from '../../../creations/creations.component';
+import { EpisodesComponent } from '../../../episodes/episodes.component';
+import { ChaptersComponent } from '../../../chapters/chapters.component';
+import { AuthorsComponent } from '../../../authors/authors.component';
+import { InfoUrlsComponent } from '../../../info-urls/info-urls.component';
+import { InfoParagraphsComponent } from '../../../info-paragraphs/info-paragraphs.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +47,14 @@ import { ContactRequestsComponent } from '../../../contact-requests/contact-requ
     FeedbackComponent,
     RolesComponent,
     NewRoleComponent,
-    ContactRequestsComponent,
+    DocumentsComponent,
+    GenresComponent,
+    CreationsComponent,
+    EpisodesComponent,
+    ChaptersComponent,
+    AuthorsComponent,
+    InfoUrlsComponent,
+    InfoParagraphsComponent,
   ],
   imports: [
     NgxsModule.forFeature([RolesState, NewRoleState, DashboardState]),
