@@ -3,3 +3,31 @@
   <nz-breadcrumb-item>დოკუმენტები</nz-breadcrumb-item>
 </nz-breadcrumb>
 
+<nz-table
+  class="mb-32 mt-12"
+  #tableDocuments
+  nzShowPagination="false"
+  [nzData]="(documents$ | async) || []">
+  <thead>
+  <tr>
+    <th nzWidth="65%">სახელი</th>
+    <th>ბოლოს განახლდა</th>
+    <th nzWidth="3%"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let document of tableDocuments.data">
+    <td class="mb-2">{{document.title}}</td>
+    <td>{{document.updatedAt | date: "dd/MM/yyyy hh:mm"}}</td>
+    <td>
+      <button nz-button
+              nzSize="small"
+              nzType="primary"
+              nzShape="circle"
+              (click)="onUpdateDocumentPressed(document)">
+        <i nz-icon nzType="edit"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

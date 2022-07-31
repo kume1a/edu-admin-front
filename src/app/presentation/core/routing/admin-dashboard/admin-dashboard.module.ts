@@ -39,6 +39,7 @@ import { ChaptersComponent } from '../../../chapters/chapters.component';
 import { AuthorsComponent } from '../../../authors/authors.component';
 import { InfoUrlsComponent } from '../../../info-urls/info-urls.component';
 import { InfoParagraphsComponent } from '../../../info-paragraphs/info-paragraphs.component';
+import { DocumentsState } from '../../../documents/state/documents.state';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,12 @@ import { InfoParagraphsComponent } from '../../../info-paragraphs/info-paragraph
     InfoParagraphsComponent,
   ],
   imports: [
-    NgxsModule.forFeature([RolesState, NewRoleState, DashboardState]),
+    NgxsModule.forFeature([
+      RolesState,
+      NewRoleState,
+      DashboardState,
+      DocumentsState,
+    ]),
     AdminDashboardRoutingModule,
     NzLayoutModule,
     NzMenuModule,
