@@ -5,5 +5,5 @@ export class ActionDocuments {
 }
 
 export class DocumentsInit {
-  static readonly type = '[documents] initial load requested';
+  static readonly type = '[documents] init';
 }

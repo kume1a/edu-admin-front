@@ -6,10 +6,11 @@ import { DataPage } from '../model/common/data-page.interface';
 import { DocumentParagraph } from '../model/document/document-paragraph.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 
-export const DeleteDocumentParagraphFailure = 'DocumentParagraphNotFound';
-export const UpdateDocumentParagraphFailure = 'DocumentParagraphNotFound';
-export const GetDocumentParagraphFailure = 'DocumentParagraphNotFound';
-export const CreateDocumentParagraphFailure = 'DocumentNotFound';
+export type DeleteDocumentParagraphFailure = 'DocumentParagraphNotFound';
+export type UpdateDocumentParagraphFailure = 'DocumentParagraphNotFound';
+export type GetDocumentParagraphFailure = 'DocumentParagraphNotFound';
+export type CreateDocumentParagraphFailure = 'DocumentNotFound';
+export type GetDocumentFailure = 'DocumentNotFound';
 
 @Injectable({ providedIn: 'root' })
 export class DocumentService {
@@ -27,7 +28,10 @@ export class DocumentService {
       searchQuery?: string;
     },
   ): Observable<DataPage<DocumentParagraph>> {
-    return this.apiService.getDocumentParagraphs(documentId, params);
+    return this.apiService.getDocumentParagraphs(documentId, {
+      ...params,
+      searchQuery: params.searchQuery ? params.searchQuery : undefined,
+    });
   }
 
   createDocumentParagraph(
@@ -73,6 +77,14 @@ export class DocumentService {
   deleteDocumentParagraph(documentParagraphId: number): Observable<void> {
     return this.apiService
       .deleteDocumentParagraphById(documentParagraphId)
+      .pipe(
+        catchError((err: HttpErrorResponse) => throwError(err?.error?.message)),
+      );
+  }
+
+  getDocument(documentId: number): Observable<Document> {
+    return this.apiService
+      .getDocument(documentId)
       .pipe(
         catchError((err: HttpErrorResponse) => throwError(err?.error?.message)),
       );

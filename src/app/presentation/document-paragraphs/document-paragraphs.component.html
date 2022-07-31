@@ -1,0 +1,62 @@
+<nz-breadcrumb class="pb-16">
+  <nz-breadcrumb-item>აპლიკაცია</nz-breadcrumb-item>
+  <nz-breadcrumb-item>დოკუმენტები</nz-breadcrumb-item>
+  <nz-breadcrumb-item>{{(document$ | async)?.title ?? ''}}</nz-breadcrumb-item>
+</nz-breadcrumb>
+
+<div class="flex">
+  <nz-input-group class="flex-1 mr-24" [nzSuffix]="suffixIconSearch">
+    <input type="text"
+           nz-input
+           placeholder="ძიება..."
+           [formControl]="searchFormControl!" />
+  </nz-input-group>
+  <ng-template #suffixIconSearch>
+    <i nz-icon nzType="search"></i>
+  </ng-template>
+
+  <button
+    nz-button
+    nzType="primary"
+    class="btn-bg-secondary"
+    (click)="onNewDocumentParagraphPressed()"
+  >
+    ახალი პარაგრაფი
+  </button>
+</div>
+
+<!--suppress TypeScriptValidateTypes -->
+<nz-table
+  class="mb-32 mt-12"
+  #tableDocumentParagraphs
+  nzShowPagination
+  nzShowSizeChanger
+  [nzFrontPagination]="false"
+  (nzPageIndexChange)="onCurrentPageChanged($event)"
+  (nzPageSizeChange)="onPageSizeChanged($event)"
+  [nzTotal]="(documentParagraphs$ | async)?.totalCount ?? 0"
+  [nzPageSize]="(pageSize$ | async) || 0"
+  [nzData]="(documentParagraphs$ | async)?.data || []">
+  <thead>
+  <tr>
+    <th nzWidth="65%">სათაური</th>
+    <th>შეიქმნა</th>
+    <th nzWidth="3%"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let documentParagraph of tableDocumentParagraphs.data">
+    <td class="mb-2">{{documentParagraph.title}}</td>
+    <td>{{documentParagraph.createdAt | date: "dd/MM/yyyy hh:mm"}}</td>
+    <td>
+      <button nz-button
+              nzSize="small"
+              nzType="primary"
+              nzShape="circle"
+              (click)="onUpdateDocumentParagraphPressed(documentParagraph)">
+        <i nz-icon nzType="edit"></i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

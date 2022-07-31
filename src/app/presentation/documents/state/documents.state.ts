@@ -20,8 +20,6 @@ const DOCUMENTS_STATE_TOKEN = new StateToken<DocumentsStateModel>('documents');
 export class DocumentsState {
   constructor(private readonly documentService: DocumentService) {}
 
-  private currentPage = 1;
-
   @Selector([DOCUMENTS_STATE_TOKEN])
   static documents(state: DocumentsStateModel) {
     return state.documents;
@@ -29,8 +27,6 @@ export class DocumentsState {
 
   @Action(DocumentsInit)
   async init(ctx: StateContext<DocumentsStateModel>) {
-    this.currentPage = 1;
-
     this.documentService
       .getDocuments()
       .subscribe((res) => ctx?.patchState({ documents: res }));

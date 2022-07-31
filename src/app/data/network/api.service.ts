@@ -92,7 +92,7 @@ export class ApiService {
     }
 
     return this.client.get<DataPage<DocumentParagraph>>(
-      `${API_URL}/${documentId}/Paragraphs`,
+      `${API_URL}/Document/${documentId}/Paragraphs`,
       { params },
     );
   }
@@ -102,7 +102,7 @@ export class ApiService {
     body: CreateDocumentParagraphBody,
   ): Observable<DocumentParagraph> {
     return this.client.post<DocumentParagraph>(
-      `${API_URL}/${documentId}/Paragraphs`,
+      `${API_URL}/Document/${documentId}/Paragraphs`,
       body,
     );
   }
@@ -129,5 +129,9 @@ export class ApiService {
     return this.client.delete<void>(
       `${API_URL}/Document/Paragraphs/${documentParagraphId}`,
     );
+  }
+
+  getDocument(documentId: number): Observable<Document> {
+    return this.client.get<Document>(`${API_URL}/Document/${documentId}`);
   }
 }

@@ -13,6 +13,7 @@ import { AuthorsComponent } from '../../../authors/authors.component';
 import { InfoUrlsComponent } from '../../../info-urls/info-urls.component';
 import { InfoParagraphsComponent } from '../../../info-paragraphs/info-paragraphs.component';
 import { ChaptersComponent } from '../../../chapters/chapters.component';
+import { DocumentParagraphsComponent } from '../../../document-paragraphs/document-paragraphs.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       { path: 'info-urls', component: InfoUrlsComponent },
       { path: 'info-paragraphs', component: InfoParagraphsComponent },
       { path: 'feedback', component: FeedbackComponent },
+      {
+        path: 'documents/:documentId/paragraphs',
+        component: DocumentParagraphsComponent,
+      },
     ],
   },
 ];
