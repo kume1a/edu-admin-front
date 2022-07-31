@@ -21,7 +21,7 @@ const ROLES_STATE_TOKEN = new StateToken<RolesStateModel>('roles');
 @State<RolesStateModel>({
   name: ROLES_STATE_TOKEN,
   defaults: {
-    roles: { data: [], total: 0 },
+    roles: { data: [], totalCount: 0, pageSize: 10, page: 1, totalPages: 0 },
     pageSize: 10,
     searchQuery: '',
   },

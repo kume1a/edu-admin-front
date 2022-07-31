@@ -10,6 +10,11 @@ import { Permission } from '../model/role/permission.interface';
 import { Constants } from '../../common/constants';
 import { AuthenticationPayload } from '../model/authentication/authentication-payload';
 import { FilterRolesQuery } from '../model/role/filter-roles.query';
+import { Document } from '../model/document/document.interface';
+import { DocumentParagraph } from '../model/document/document-paragraph.interface';
+import { PageOptions } from '../model/common/page-options.interface';
+import { UpdateDocumentParagraphBody } from '../model/document/update-document-paragraph.body';
+import { CreateDocumentParagraphBody } from '../model/document/create-document-paragraph.body';
 
 const API_URL = Constants.API_URL;
 
@@ -66,5 +71,63 @@ export class ApiService {
 
   getPermissions(): Observable<Permission[]> {
     return this.client.get<Permission[]>(`${API_URL}/Permission`);
+  }
+
+  getDocuments(): Observable<Document[]> {
+    return this.client.get<Document[]>(`${API_URL}/Document`);
+  }
+
+  getDocumentParagraphs(
+    documentId: number,
+    query: {
+      searchQuery?: string;
+    } & PageOptions,
+  ): Observable<DataPage<DocumentParagraph>> {
+    let params = new HttpParams()
+      .set('page', query.page)
+      .set('pageSize', query.pageSize);
+
+    if (query.searchQuery) {
+      params = params.set('searchQuery', query.searchQuery);
+    }
+
+    return this.client.get<DataPage<DocumentParagraph>>(
+      `${API_URL}/${documentId}/Paragraphs`,
+      { params },
+    );
+  }
+
+  createDocumentParagraph(
+    documentId: number,
+    body: CreateDocumentParagraphBody,
+  ): Observable<DocumentParagraph> {
+    return this.client.post<DocumentParagraph>(
+      `${API_URL}/${documentId}/Paragraphs`,
+      body,
+    );
+  }
+
+  getDocumentParagraphById(
+    documentParagraphId: number,
+  ): Observable<DocumentParagraph> {
+    return this.client.get<DocumentParagraph>(
+      `${API_URL}/Document/Paragraphs/${documentParagraphId}`,
+    );
+  }
+
+  updateDocumentParagraphById(
+    documentParagraphId: number,
+    body: UpdateDocumentParagraphBody,
+  ): Observable<DocumentParagraph> {
+    return this.client.patch<DocumentParagraph>(
+      `${API_URL}/Document/Paragraphs/${documentParagraphId}`,
+      body,
+    );
+  }
+
+  deleteDocumentParagraphById(documentParagraphId: number): Observable<void> {
+    return this.client.delete<void>(
+      `${API_URL}/Document/Paragraphs/${documentParagraphId}`,
+    );
   }
 }

@@ -1,4 +1,7 @@
 export interface DataPage<T> {
   data: T[];
-  total: number;
+  totalCount: number;
+  totalPages: number;
+  page: number;
+  pageSize: number;
 }

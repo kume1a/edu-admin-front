@@ -33,7 +33,7 @@
   [nzFrontPagination]="false"
   (nzPageIndexChange)="onCurrentPageChanged($event)"
   (nzPageSizeChange)="onPageSizeChanged($event)"
-  [nzTotal]="(roles$ | async)?.total ?? 0"
+  [nzTotal]="(roles$ | async)?.totalCount ?? 0"
   [nzPageSize]="(pageSize$ | async) || 0"
   [nzData]="(roles$ | async)?.data || []">
   <thead>
